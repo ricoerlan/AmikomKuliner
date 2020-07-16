@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "125423068223",
+    "firebase_url": "https://nearbyresto-bb63f.firebaseio.com",
+    "project_id": "nearbyresto-bb63f",
+    "storage_bucket": "nearbyresto-bb63f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125423068223:android:c3d781a65353fe8ef4448a",
+        "android_client_info": {
+          "package_name": "com.example.nearby_resto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125423068223-tcdg41ku7tviv9724ikhs2v7001b2ic8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nearby_resto",
+            "certificate_hash": "c060482abae3a0e511706d369f530416bbbeb4eb"
+          }
+        },
+        {
+          "client_id": "125423068223-tilpknd2nsbflhjsmu7c520kqeghrdm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk_eErLA_92Fdwa3lz7Ol2xCIwcbKlnpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125423068223-tilpknd2nsbflhjsmu7c520kqeghrdm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
