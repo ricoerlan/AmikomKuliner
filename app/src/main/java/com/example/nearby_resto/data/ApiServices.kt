@@ -10,10 +10,9 @@ import retrofit2.http.GET
 
 class ApiServices {
 
+    object ApiResto {
 
-
-    companion object {
-        const val BASE_URL = "11.12.13.20/Nearby_Resto"
+        const val BASE_URL = "http://11.12.13.20/Nearby_Resto/"
 
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
@@ -21,10 +20,11 @@ class ApiServices {
 
         val retrofit = Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(Companion.BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
 
-
+        val retrofitService = retrofit.create(ApiService::class.java)
+    }
 
         // API Data
         interface ApiService {
@@ -32,10 +32,5 @@ class ApiServices {
             suspend fun showList(): List<DataResto>
         }
 
-        object ApiResto {
-            val retrofitService = retrofit.create(ApiService::class.java)
-        }
 
     }
-
-}

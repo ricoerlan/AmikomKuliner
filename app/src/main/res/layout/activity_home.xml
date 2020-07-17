@@ -8,13 +8,35 @@
             type="com.example.nearby_resto.ui.home.HomeViewModel"/>
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewResto"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="20dp">
+
+        <TextView
+            android:id="@+id/etRekomendasi"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Rekomendasi Restoran"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewResto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etRekomendasi">
 
 
+        </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </layout>

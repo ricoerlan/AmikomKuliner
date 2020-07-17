@@ -1,9 +1,18 @@
 package com.example.nearby_resto.ui.auth
 
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.nearby_resto.data.MySql.MySqlApiServices
 import com.example.nearby_resto.data.UserRepository
+import com.example.nearby_resto.data.model.DataUserMySql
+import com.example.nearby_resto.MyFirebaseInstanceIdService
+import com.example.nearby_resto.data.model.DataResto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -69,7 +78,20 @@ class AuthViewModel(
                 authListener?.onFailure(it.message!!)
             })
         disposables.add(disposable)
-    }
+
+        val apiService = MySqlApiServices()
+        val userInfo = DataUserMySql("Nama", user?.email.toString() , "wdwdwd" , "token" , "Uid" )
+
+        apiService.addUser(userInfo) {
+            if (it?.email != null) {
+                // it = newly added user parsed as response
+                // it?.id = newly added user ID
+            } else {
+
+            }
+        } }
+
+
 
     fun goToSignup(view: View) {
         Intent(view.context, SignUpActivity::class.java).also {

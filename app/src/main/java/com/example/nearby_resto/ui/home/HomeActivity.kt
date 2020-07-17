@@ -1,6 +1,8 @@
 package com.example.nearby_resto.ui.home
 
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,10 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.nearby_resto.R
 import com.example.nearby_resto.data.RestoRepository
 import com.example.nearby_resto.data.adapter.DataRestoAdapter
+import com.example.nearby_resto.data.model.DataResto
 import com.example.nearby_resto.databinding.ActivityHomeBinding
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnSuccessListener
 import io.reactivex.disposables.CompositeDisposable
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -41,9 +47,11 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         restoRepo.data.observe({ lifecycle }, {
             val adapter = DataRestoAdapter(it)
             val recyclerView = binding.recyclerViewResto
+            val resto = intent.getParcelableExtra<DataResto>("resto")
 
                 recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity,RecyclerView.VERTICAL,false)
+                recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity,RecyclerView.HORIZONTAL,false)
+
 
         })
 
@@ -52,6 +60,20 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         })
+
+//        // GET MY CURRENT LOCATION
+//        val mFusedLocation = LocationServices.getFusedLocationProviderClient(this)
+//        mFusedLocation.lastLocation.addOnSuccessListener(this, object : OnSuccessListener<Location> {
+//            override fun onSuccess(location: Location?) {
+//                // Do it all with location
+//                Log.d("My Current location", "Lat : ${location?.latitude} Long : ${location?.longitude}")
+//                // Display in Toast
+//                Toast.makeText(this@HomeActivity,
+//                    "Lat : ${location?.latitude} Long : ${location?.longitude}",
+//                    Toast.LENGTH_LONG).show()
+//            }
+//
+//        })
 
     }
 

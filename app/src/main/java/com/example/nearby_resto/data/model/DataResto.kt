@@ -1,4 +1,8 @@
 package com.example.nearby_resto.data.model
 
-data class DataResto(val nama: String, val lokasi: String, val photo: String) {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class DataResto(val nama: String, val lokasi: String, val photo: String): Parcelable {
 }

@@ -32,6 +32,7 @@ class SignUpActivity : AppCompatActivity(), AuthListener, KodeinAware {
         binding.viewmodel = viewModel
 
         viewModel.authListener = this
+
     }
 
     override fun onStarted() {

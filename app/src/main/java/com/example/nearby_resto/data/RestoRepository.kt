@@ -30,7 +30,7 @@ class RestoRepository: ViewModel() {
     fun initData() {
         uiScope.launch {
             try {
-                val result = ApiServices.Companion.ApiResto.retrofitService.showList()
+                val result = ApiServices.ApiResto.retrofitService.showList()
 
                 if (result.isNotEmpty()) {
                     _data.value = result
