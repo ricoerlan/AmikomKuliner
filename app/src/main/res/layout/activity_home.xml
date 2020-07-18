@@ -13,28 +13,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <FrameLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:padding="20dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/etRekomendasi"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="Rekomendasi Restoran"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewResto"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etRekomendasi">
-
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-
-        </RelativeLayout>
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/navigationmenu" />
 
     </LinearLayout>
 
