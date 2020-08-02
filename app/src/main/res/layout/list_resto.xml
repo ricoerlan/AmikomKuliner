@@ -5,38 +5,37 @@
         <variable
             name="Home"
             type="com.example.nearby_resto.ui.home.HomeActivity" />
-        <variable
-            name="Adapter"
-            type="com.example.nearby_resto.data.adapter.DataRestoAdapter" />
 
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp">
 
                 <ImageView
                     android:id="@+id/img_view"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="150dp" />
 
                 <TextView
                     android:id="@+id/et1"
                     android:layout_width="200dp"
                     android:layout_height="35dp"
                     android:text="Nama Resto"
+                    android:textStyle="bold"
+                    android:textColor="#000"
                     android:textSize="25sp"
-                    android:layout_below="@id/img_view"/>
+                    android:layout_below="@id/img_view"
+                    android:layout_marginHorizontal="2dp"/>
 
                 <TextView
                     android:id="@+id/et2"
@@ -44,7 +43,8 @@
                     android:layout_height="20dp"
                     android:text="Lokasi"
                     android:textSize="15sp"
-                    android:layout_below="@id/et1"/>
+                    android:layout_below="@id/et1"
+                    android:layout_marginHorizontal="2dp"/>
 
 
             </RelativeLayout>

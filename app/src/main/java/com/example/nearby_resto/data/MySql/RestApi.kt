@@ -9,7 +9,7 @@ import retrofit2.http.POST
 interface RestApi {
 
         @Headers("Content-Type: application/json")
-        @POST("createUser.php")
+        @POST("TableUser/createUser.php")
         fun addUser(@Body userData: DataUserMySql): Call<DataUserMySql>
 
 

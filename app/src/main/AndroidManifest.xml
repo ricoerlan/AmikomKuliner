@@ -3,6 +3,7 @@
     package="com.example.nearby_resto">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,14 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Call"></activity>
-        <activity android:name=".Search" />
-        <activity
-            android:name=".BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation" />
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.main.detail.ShoppingCartActivity"></activity>
+        <activity android:name=".ui.main.detail.ScanCodeDetailResto" />
+        <activity android:name=".ui.main.detail.DetailRestoActivity" />
+        <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.SignUpActivity" />
-        <activity android:name=".ui.auth.LoginActivity">
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

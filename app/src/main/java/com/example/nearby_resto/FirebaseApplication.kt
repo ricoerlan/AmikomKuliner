@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.nearby_resto.data.UserRepository
 import com.example.nearby_resto.data.firebase.FirebaseSource
 import com.example.nearby_resto.ui.auth.AuthViewModelFactory
-import com.example.nearby_resto.ui.home.HomeViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -21,7 +20,7 @@ class FirebaseApplication : Application(), KodeinAware {
         bind() from singleton { FirebaseSource() }
         bind() from singleton { UserRepository(instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
-        bind() from provider { HomeViewModelFactory(instance()) }
+//        bind() from provider { HomeViewModelFactory(instance()) }
 
     }
 }

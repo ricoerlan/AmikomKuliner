@@ -9,9 +9,10 @@
             type="com.example.nearby_resto.ui.auth.AuthViewModel"/>
     </data>
 
-    <RelativeLayout android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#008577"
+        android:background="#0E9DDD"
         android:orientation="vertical"
         tools:context=".ui.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -20,7 +21,8 @@
             android:id="@+id/loginLayout"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#0E9DDD">
 
             <TextView
                 android:id="@+id/login_title"
@@ -103,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
                         android:onClick="@{() -> viewmodel.login()}"
-                        android:background="#d67601"
+                        android:background="#673AB7"
                         android:text="Log in"
                         android:textAllCaps="false"
                         android:textColor="#fff"
@@ -127,8 +129,10 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@+id/login_title"
+                android:src="@drawable/ic_person_pin_24"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:elevation="4dp" />
 
         </RelativeLayout>

@@ -1,13 +1,52 @@
 package com.example.nearby_resto.ui.main
 
-import android.view.View
-import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nearby_resto.R
-import com.example.nearby_resto.databinding.MainFragmentBinding
+import com.example.nearby_resto.data.ApiServices
+import com.example.nearby_resto.data.model.DataResto
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    // TODO: Implement the
 
+    private val _data = MutableLiveData<List<DataResto>>()
+    val data : LiveData<List<DataResto>>
+        get() = _data
+
+    private val _response = MutableLiveData<String>()
+    val response : LiveData<String>
+        get() = _response
+
+    private var job = Job()
+    private val uiScope = CoroutineScope(job + Dispatchers.Main)
+
+    init {
+        _response.value = ""
+        initData()
+    }
+
+    fun initData() {
+        uiScope.launch {
+            try {
+                val result = ApiServices.ApiResto.retrofitService.showList()
+
+                if (result.isNotEmpty()) {
+                    _data.value = result
+                } else {
+                    _response.value = "Data Resto kosong!"
+                }
+            } catch (t: Throwable){
+                _response.value = "Tidak ada koneksi internet!"
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
 
 }

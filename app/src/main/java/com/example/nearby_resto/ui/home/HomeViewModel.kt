@@ -1,34 +1,24 @@
 package com.example.nearby_resto.ui.home
 
-import android.content.Context
-import android.content.Intent
-import android.view.View
-import android.widget.FrameLayout
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import com.example.nearby_resto.R
-import com.example.nearby_resto.data.UserRepository
-import com.example.nearby_resto.ui.auth.LoginActivity
-import com.example.nearby_resto.ui.main.SearchFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.example.nearby_resto.data.LocationLiveData
 
 class HomeViewModel(
-    private val repository: UserRepository
-) : ViewModel() {
+        application: Application
+) : AndroidViewModel(application) {
 
+    private val locationData = LocationLiveData(application)
 
-    val user by lazy {
-        repository.currentUser()
-    }
-
-    fun logout(view: View){
-        repository.logout()
-        view.context.startLoginActivity()
-    }
-
-    fun Context.startLoginActivity() =
-        Intent(this, LoginActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(it)
-        }
+    fun getLocationData() = locationData
 }
+
+//    val user by lazy {
+//        repository.currentUser()
+//    }
+//
+//    fun logout(view: View){
+//        repository.logout()
+//        view.context.startLoginActivity()
+//    }
+

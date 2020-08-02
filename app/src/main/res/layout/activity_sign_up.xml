@@ -11,7 +11,7 @@
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#008577"
+        android:background="#0E9DDD"
         android:orientation="vertical"
         tools:context=".ui.auth.SignupActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -95,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
                         android:onClick="@{() -> viewmodel.signup()}"
-                        android:background="#d67601"
+                        android:background="#673AB7"
                         android:text="Sign Up"
                         android:textAllCaps="false"
                         android:textColor="#fff"
@@ -118,6 +118,8 @@
                 android:id="@+id/user_profile_photo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/ic_person_pin_24"
+                android:background="#FFFF"
                 android:layout_below="@+id/login_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
