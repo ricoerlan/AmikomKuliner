@@ -2,12 +2,12 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginVertical="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,25 +21,25 @@
 
             <TextView
                 android:id="@+id/et1"
-                android:layout_width="200dp"
-                android:layout_height="35dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Nama Resto"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="25sp"
+                android:textSize="20sp"
                android:layout_toEndOf="@id/img_view"
-                android:layout_marginHorizontal="2dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/et2"
-                android:layout_width="200dp"
-                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Lokasi"
                 android:textSize="15sp"
                 android:layout_below="@id/et1"
                 android:layout_toEndOf="@id/img_view"
-                android:layout_marginHorizontal="2dp"/>
+                android:layout_marginHorizontal="10dp"/>
 
 
         </RelativeLayout>

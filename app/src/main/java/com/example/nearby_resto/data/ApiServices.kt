@@ -1,7 +1,6 @@
 package com.example.nearby_resto.data
 
-import com.example.nearby_resto.data.model.DataMenu
-import com.example.nearby_resto.data.model.DataResto
+import com.example.nearby_resto.data.model.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -31,7 +30,18 @@ class ApiServices {
         // API Data
         interface ApiService {
             @GET("TableResto/getAllResto.php")
-            suspend fun showList(): List<DataResto>
+            suspend fun getAllResto(): List<DataResto>
+
+            @GET("TableKategori/getAllKategori.php")
+            suspend fun getAllCategories(): List<KategoriResto>
+
+            @GET("TableResto/searchResto.php")
+            suspend fun search(@Query("search") search: String?): List<DataResto>?
+
+            @GET("TableResto/GetRestoByIdKategori.php")
+            suspend fun GetRestoByIdKategori(
+                @Query("id_kategori", encoded = true) id_kategori: Int?
+            ): List<DataResto>
 
             @GET("TableMenu/GetMenuByIdResto.php")
             fun showMenu(
@@ -44,8 +54,35 @@ class ApiServices {
             ): Call<List<DataResto>>
 
             @FormUrlEncoded
-            @POST("search.php")
-            fun search(@Field("search") search: String?): Call<DataResto?>?
+            @POST("TableUser/createUser.php")
+            fun registrasiUser(
+                @Field("nama") nama: String?,
+                @Field("email") email: String?,
+                @Field("token") token: String?,
+                @Field("userUid") userUid: String?
+            ): Call<Value>
+
+            @FormUrlEncoded
+            @POST("TableTransaksi/addTransaction.php")
+            fun checkout(
+                @Field("id_pesanan") id_pesanan: Int?,
+                @Field("no_meja") no_meja: Int?,
+                @Field("nama_pemesan") nama_pemesan: String?,
+                @Field("email") email: String?,
+                @Field("menu") menu: String?,
+                @Field("total_harga") total_harga: Int?
+            ): Call<Value>
+
+            @GET("TableTransaksi/GetTransactionByEmail.php")
+            suspend fun getTransactionList(
+                @Query("email") email: String?
+            ): List<DataTransaksi>
+
+            @GET("TableTransaksi/CheckTransaction.php")
+           suspend fun checkTransaction(
+                @Query("id_pesanan") id_pesanan: Int?
+            ): List<DataTransaksi>
+
         }
 
     }

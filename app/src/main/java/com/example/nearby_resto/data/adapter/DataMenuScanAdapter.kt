@@ -51,13 +51,14 @@ class DataMenuScanAdapter (private val listMenu: List<DataMenu>): RecyclerView.A
                 view.addToCart.setOnClickListener { view ->
                     val item = CartItem(product)
                     val activity = itemView.context as Activity
+                    val itemSize = CartUtils.getShoppingCartSize().plus(1)
                     Paper.init(activity)
 
                     CartUtils.addItem(item)
                     //notify users
                     Toast.makeText(
                         activity,
-                        "${item.product.nama_menu} telah ditambahkan",
+                        "${item.product.nama_menu} telah ditambahkan \n Total item di keranjang saat ini = $itemSize",
                         Toast.LENGTH_LONG
                     ).show()
 
@@ -66,13 +67,14 @@ class DataMenuScanAdapter (private val listMenu: List<DataMenu>): RecyclerView.A
                 view.removeItem.setOnClickListener { view ->
                     val item = CartItem(product)
                     val activity = itemView.context as Activity
+                    val itemSize = CartUtils.getShoppingCartSize().plus(1)
                     Paper.init(activity)
 
                     CartUtils.removeItem(item, view.context)
                     //notify users
                     Toast.makeText(
                         activity,
-                        "${item.product.nama_menu} telah dihapus",
+                        "${item.product.nama_menu} telah dihapus \n Total item di keranjang saat ini = $itemSize",
                         Toast.LENGTH_LONG
                     ).show()
 

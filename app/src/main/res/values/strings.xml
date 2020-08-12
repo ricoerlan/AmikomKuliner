@@ -9,6 +9,12 @@
     <string name="latLong">Longitude: %.3f, Latitude: %.3f</string>
     <string name="enable_gps">Please enable your gps</string>
     <string name="permission_request">App requires location permission</string>
+    <string name="checkout_success">Pesananmu berhasil kami terima silahkan bayar ke Kasir agar pesananmu dapat diproses</string>
+    <string name="checkout_failed">"Pesananmu gagal diproses silahkan cek kembali Data Anda"</string>
+    <string name="checkout_result">"Klik Tombol Order Detail diatas untuk info detail pesanan anda"</string>
+    <string name="tombol_konfirmasi">"Pembayaran Tunai dapat dilakukan di bagian Kasir lalu konfirmasi pembayaran melalui tombol dibawah"</string>
+    <string name="order_sucess">"Terima Kasih , Pembayaran telah dikonfirmasi pesanan anda akan segera kami proses"</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

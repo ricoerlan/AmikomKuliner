@@ -5,28 +5,38 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nearby_resto.data.MySql.MySqlApiServices
-import com.example.nearby_resto.data.UserRepository
-import com.example.nearby_resto.data.model.DataUserMySql
 import com.example.nearby_resto.MyFirebaseInstanceIdService
-import com.example.nearby_resto.data.model.DataResto
+import com.example.nearby_resto.data.ApiServices
+import com.example.nearby_resto.data.UserRepository
+import com.example.nearby_resto.data.model.Value
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class AuthViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
 
+    val TAG = AuthViewModel::class.java.simpleName
+
     //email and password for the input
+    var namaUser: String? = null
     var email: String? = null
     var password: String? = null
+//    var token: String? = firebasetoken.getToken()
 
     //auth listener
     var authListener: AuthListener? = null
+
+
+    val currentUser = FirebaseAuth.getInstance().currentUser
 
 
     //disposable to dispose the Completable
@@ -69,6 +79,7 @@ class AuthViewModel(
             return
         }
         authListener?.onStarted()
+        
         val disposable = repository.register(email!!, password!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -77,19 +88,33 @@ class AuthViewModel(
             }, {
                 authListener?.onFailure(it.message!!)
             })
+
         disposables.add(disposable)
 
-        val apiService = MySqlApiServices()
-        val userInfo = DataUserMySql("Nama", user?.email.toString() , "wdwdwd" , "token" , "Uid" )
-
-        apiService.addUser(userInfo) {
-            if (it?.email != null) {
-                // it = newly added user parsed as response
-                // it?.id = newly added user ID
-            } else {
-
+        val call:Call<Value>  = ApiServices.ApiResto.retrofitService.registrasiUser(namaUser,email, "token" , user?.uid)
+        call.enqueue(object : Callback<Value?> {
+            override fun onResponse(
+                call: Call<Value?>?,
+                response: Response<Value?>
+            ) {
+                val value: String? = response.body()?.value
+                val result: String? = response.body()?.result
+                if (value == "1") {
+                    Log.d(TAG, "onResponse: $result")
+//                    Toast.makeText(this@MainActivity, result, Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d(TAG, "onResponse: $result")
+//                    Toast.makeText(this@MainActivity, result, Toast.LENGTH_SHORT).show()
+                }
             }
-        } }
+
+            override fun onFailure(call: Call<Value?>, t: Throwable) {
+                Log.d(TAG, "onFailure: Jaringan error")
+//                Toast.makeText(this@MainActivity, "Jaringan Error!", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
 
 
 

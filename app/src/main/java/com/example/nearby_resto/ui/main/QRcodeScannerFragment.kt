@@ -49,7 +49,7 @@ class QRcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, View.O
 
         initScannerView()
         initDefaultView()
-        button_reset.setOnClickListener(this)
+        btn_reset.setOnClickListener(this)
 
     }
 
@@ -96,7 +96,8 @@ class QRcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, View.O
 
     private fun initDefaultView() {
         text_view_qr_code_value.text = "QR Code Value"
-        button_reset.visibility = View.GONE
+        btn_reset.visibility = View.GONE
+        btn_ke_detail_resto.visibility = View.GONE
     }
 
     override fun handleResult(rawResult: Result?) {
@@ -115,17 +116,14 @@ class QRcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, View.O
                     val list: List<DataResto>? = response.body()
                     if (list != null) {
 
-                        val intent = Intent(activity, ScanCodeDetailResto::class.java)
+                        goToRestoDetail(id_resto,list)
 
-                        intent.putExtra("id_resto", id_resto)
-                        intent.putExtra("nama_resto", list[0].nama)
-                        intent.putExtra("lokasi_resto", list[0].lokasi)
-                        intent.putExtra("photo_resto", list[0].photo)
-                        intent.putExtra("latitude_resto", list[0].latitude)
-                        intent.putExtra("longitude_resto", list[0].longitude)
-                        intent.putExtra("qr_result", rawResult?.text)
+                        btn_ke_detail_resto.visibility = View.VISIBLE
+                        btn_reset.visibility = View.VISIBLE
 
-                        activity?.startActivity(intent)
+                        btn_ke_detail_resto.setOnClickListener {
+                            goToRestoDetail(id_resto,list)
+                        }
 
                     }
 
@@ -145,7 +143,7 @@ class QRcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, View.O
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.button_reset -> {
+            R.id.btn_reset -> {
                 mScannerView.resumeCameraPreview(this)
                 initDefaultView()
             }
@@ -153,6 +151,19 @@ class QRcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, View.O
                 /* nothing to do in here */
             }
         }
+    }
+
+    fun goToRestoDetail(id_resto: Int? , list: List<DataResto>?){
+        val intent = Intent(activity, ScanCodeDetailResto::class.java)
+
+        intent.putExtra("id_resto", id_resto)
+        intent.putExtra("nama_resto", list?.get(0)?.nama)
+        intent.putExtra("lokasi_resto", list?.get(0)?.lokasi)
+        intent.putExtra("photo_resto", list?.get(0)?.photo)
+        intent.putExtra("latitude_resto", list?.get(0)?.latitude)
+        intent.putExtra("longitude_resto", list?.get(0)?.longitude)
+
+        activity?.startActivity(intent)
     }
 
 }

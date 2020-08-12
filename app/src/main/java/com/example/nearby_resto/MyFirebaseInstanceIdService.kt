@@ -1,11 +1,9 @@
 package com.example.nearby_resto
 
+import android.content.Context
 import android.util.Log
-import com.example.nearby_resto.ui.auth.AuthViewModel
-import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.example.nearby_resto.ui.home.HomeViewModel
 
 
 class MyFirebaseInstanceIdService : FirebaseMessagingService() {
@@ -14,9 +12,8 @@ class MyFirebaseInstanceIdService : FirebaseMessagingService() {
     override fun onNewToken(p0: String) {
         super.onNewToken(p0!!)
         Log.e(TAG,p0)
+//        getSharedPreferences("_", MODE_PRIVATE).edit().putString("token", p0).apply();
 
-        //Method berikut ini digunakan untuk memperoleh token dan mennyimpannya ke server aplikasi
-        sendRegistrationToServer(p0)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -29,9 +26,8 @@ class MyFirebaseInstanceIdService : FirebaseMessagingService() {
         //create your own notification to display it on notification tray
     }
 
-
-    private fun sendRegistrationToServer(p0: String?) {
-        //Disini kita biarkan kosong saja
-
-    }
+//    fun getToken(): String? {
+//        return getSharedPreferences("_", Context.MODE_PRIVATE)
+//            .getString("token", "empty")
+//    }
 }

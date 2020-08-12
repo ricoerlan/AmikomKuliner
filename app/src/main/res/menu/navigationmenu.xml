@@ -9,22 +9,22 @@
 
     <item
         android:id="@+id/navigation_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
 
     <item
         android:id="@+id/navigation_qrcode_scanner"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/qrcrot24px"
         android:title="QRCode Scanner" />
 
     <item
-        android:id="@+id/navigation_voucher"
-        android:icon="@drawable/ic_voucher"
-        android:title="Voucher" />
+        android:id="@+id/navigation_transaction_history"
+        android:icon="@drawable/transaction_history24px"
+        android:title="History\n Transaksi" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile" />
 
 

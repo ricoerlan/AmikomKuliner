@@ -15,9 +15,10 @@ import com.example.nearby_resto.data.model.DataResto
 import com.example.nearby_resto.ui.main.detail.DetailRestoActivity
 import kotlinx.android.synthetic.main.list_resto.view.*
 
-class DataRestoSearchAdapter (private val listResto: List<DataResto>): RecyclerView.Adapter<DataRestoSearchAdapter.Holder>() , Filterable{
+class DataRestoSearchAdapter (private val listResto: List<DataResto>): RecyclerView.Adapter<DataRestoSearchAdapter.Holder>(){
 
     private lateinit var listRestoData: MutableList<DataResto>
+    private var arrayListResto: ArrayList<DataResto>? = ArrayList(listResto)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(LayoutInflater.from(parent.context).inflate(R.layout.list_search_resto,parent,false))
@@ -47,6 +48,8 @@ class DataRestoSearchAdapter (private val listResto: List<DataResto>): RecyclerV
             intent.putExtra("id_resto", listResto.get(position).id_resto)
             intent.putExtra("nama_resto", listResto.get(position).nama)
             intent.putExtra("lokasi_resto", listResto.get(position).lokasi)
+            intent.putExtra("latitude_resto", listResto[position].latitude)
+            intent.putExtra("longitude_resto", listResto[position].longitude)
             intent.putExtra("photo_resto", listResto.get(position).photo)
 
             // method startActivity cma bisa di pake di activity/fragment
@@ -58,40 +61,9 @@ class DataRestoSearchAdapter (private val listResto: List<DataResto>): RecyclerV
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
-    override fun getFilter(): Filter {
-        return exampleFilter;
+    fun filterList(filterdNames: ArrayList<DataResto>) {
+        this.arrayListResto = filterdNames
+        notifyDataSetChanged()
     }
-
-    private val exampleFilter: Filter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence): FilterResults {
-
-            val filteredList: MutableList<DataResto> = ArrayList()
-            if (constraint.isEmpty()) {
-                filteredList.addAll(listResto)
-            } else {
-                val filterPattern =
-                    constraint.toString().toLowerCase().trim { it <= ' ' }
-                for (item in listResto) {
-                    if (item.nama.toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item)
-                    }
-                }
-            }
-            val results = FilterResults()
-            results.values = filteredList
-            return results
-        }
-
-        override fun publishResults(
-            constraint: CharSequence,
-            results: FilterResults
-        ) {
-            listRestoData?.clear()
-            listRestoData?.addAll(results.values as List<DataResto>)
-            notifyDataSetChanged()
-        }
-    }
-
-
 }
 

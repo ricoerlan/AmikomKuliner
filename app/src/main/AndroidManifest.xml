@@ -16,12 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.detail.ShoppingCartActivity"></activity>
+        <activity android:name=".ui.main.detail.ResultCheckoutActivity"></activity>
+        <activity android:name=".ui.main.detail.DetailKategoriActivity" />
+        <activity android:name=".ui.main.detail.ShoppingCartActivity" />
         <activity android:name=".ui.main.detail.ScanCodeDetailResto" />
         <activity android:name=".ui.main.detail.DetailRestoActivity" />
-        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.auth.SignUpActivity" />
-        <activity android:name=".ui.home.HomeActivity">
+        <activity android:name=".ui.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

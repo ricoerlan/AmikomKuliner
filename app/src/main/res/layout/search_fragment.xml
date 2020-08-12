@@ -8,23 +8,40 @@
             type="com.example.nearby_resto.ui.main.SearchViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".MainActivity"
-        android:orientation="vertical">
+        android:background="@drawable/bg_luar">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+        <EditText
+            android:id="@+id/input_search"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            android:hint=" Masukan Nama atau Lokasi.."
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:background="@drawable/curved_layout"
+            android:padding="5dp"/>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/searchView" />
+            android:background="@color/white"
+            android:layout_marginBottom="60dp"
+            android:layout_below="@id/input_search">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewRestoSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewRestoSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </RelativeLayout>
 
 </layout>

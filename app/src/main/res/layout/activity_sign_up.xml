@@ -51,6 +51,23 @@
                     android:orientation="vertical"
                     android:paddingTop="30dp">
 
+                    <TextView
+                        android:labelFor="@id/text_nama"
+                        android:text="Nama Lengkap"
+                        android:fontFamily="sans-serif-light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/text_nama"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:singleLine="true"
+                        android:text="@={viewmodel.namaUser}"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Alexander Bambang"
+                        android:inputType="textPersonName"/>
 
                     <TextView
                         android:labelFor="@id/text_email"
@@ -58,6 +75,7 @@
                         android:fontFamily="sans-serif-light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
 
                     <EditText
                         android:id="@+id/text_email"
@@ -67,7 +85,7 @@
                         android:singleLine="true"
                         android:text="@={viewmodel.email}"
                         android:layout_marginBottom="10dp"
-                        android:hint="john@gmail.com"
+                        android:hint="bambang69@gmail.com"
                         android:inputType="textEmailAddress"/>
 
                     <TextView

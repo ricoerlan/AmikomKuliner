@@ -17,9 +17,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.nearby_resto.R
 import com.example.nearby_resto.databinding.ActivityHomeBinding
+import com.example.nearby_resto.ui.auth.AuthViewModel
 import com.example.nearby_resto.ui.main.*
 import com.example.nearby_resto.utils.GpsUtils
-import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_home.*
@@ -36,6 +36,7 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
 //    private val factory: HomeViewModelFactory by instance()
     private var myCompositeDisposable: CompositeDisposable? = null
     private lateinit var viewModel: HomeViewModel
+    private lateinit var mAuth : AuthViewModel
     private lateinit var binding: ActivityHomeBinding
     private var isGPSEnabled = false
 
@@ -56,8 +57,8 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_voucher -> {
-                val fragment = VoucherFragment()
+            R.id.navigation_transaction_history -> {
+                val fragment = TransactionHistoryFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -138,13 +139,13 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         viewModel.getLocationData().observe(this, Observer {
             val geocoder = Geocoder(this, Locale.getDefault())
             val addresses: List<Address> = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-            val subKota: String = addresses[0].subLocality
-            val kota: String = addresses[0].locality
+            val subKota: String? = addresses[0].subLocality
+            val kota: String? = addresses[0].locality
 
-            if(subKota.isNotEmpty() && kota.isNotEmpty()){
+            if(subKota!!.isNotEmpty() && kota!!.isNotEmpty()){
                 binding.toolbar.title = "$subKota, $kota"
             }
-             Toast.makeText(this, "latitude :" + it.latitude + "  longitude:" + it.longitude ,Toast.LENGTH_LONG).show()
+//             Toast.makeText(this, "latitude :" + it.latitude + "  longitude:" + it.longitude ,Toast.LENGTH_LONG).show()
         })
     }
 
