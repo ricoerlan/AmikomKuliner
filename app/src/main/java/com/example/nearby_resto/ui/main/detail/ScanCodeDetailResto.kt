@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.nearby_resto.R
@@ -57,14 +58,14 @@ class ScanCodeDetailResto : AppCompatActivity() {
 //        binding.swipeContainer.isRefreshing = true
 
         Paper.init(this)
-        binding.cartSize.text = CartUtils.getShoppingCartSize().toString()
+//        binding.txtItemCount.text = CartUtils.getShoppingCartSize().toString()
 
         loadData()
         startLocationUpdate()
 
-        showCart.setOnClickListener {
-            startActivity(Intent(this, ShoppingCartActivity::class.java))
-        }
+//        showCart.setOnClickListener {
+//            startActivity(Intent(this, ShoppingCartActivity::class.java))
+//        }
 
         binding.BTNGmaps.setOnClickListener(){
             goToGmaps()
@@ -111,11 +112,9 @@ class ScanCodeDetailResto : AppCompatActivity() {
                     Glide.with(this@ScanCodeDetailResto)
                         .load(URL_FOTO)
                         .placeholder(R.drawable.ic_launcher_background)
-                        .override(600,1100)
                         .into(binding.viewImgDetail)
 
-
-                    recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+                    recyclerView.layoutManager = LinearLayoutManager(this@ScanCodeDetailResto,LinearLayoutManager.VERTICAL,false)
                     recyclerView.adapter = adapter
 
                 }

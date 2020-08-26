@@ -53,6 +53,7 @@ class ShoppingCartActivity : AppCompatActivity() {
             .fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(cartItem.product.harga_menu.toDouble()) }
 
         total_price.text = "$totalPrice"
+
         btn_checkout.setOnClickListener {
             checkout()
         }

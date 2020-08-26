@@ -3,10 +3,10 @@ package com.example.nearby_resto.utils
 import android.content.Context
 import com.example.nearby_resto.data.model.CartItem
 import io.paperdb.Paper
+import java.text.NumberFormat
+import java.util.*
 
-class CartUtils {
-
-    companion object {
+object CartUtils {
 
         fun addItem(cartItem: CartItem) {
             val cart =
@@ -58,6 +58,22 @@ class CartUtils {
 
             return cartSize
         }
+
+    fun getTotalPriceIDR(): String{
+        var totalPrice = getCart()
+            .fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(cartItem.product.harga_menu.toDouble()) }
+
+        val localeID = Locale("in", "ID")
+        val totalPriceIDR = NumberFormat.getCurrencyInstance(localeID).format(totalPrice)
+
+        return totalPriceIDR
     }
 
-}
+    fun getTotalPrice(): Double{
+        var totalPrice = getCart()
+            .fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(cartItem.product.harga_menu.toDouble()) }
+
+        return totalPrice
+    }
+
+    }

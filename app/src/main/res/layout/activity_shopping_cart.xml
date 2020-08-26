@@ -37,13 +37,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <EditText
             android:id="@+id/tv_no_meja"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginHorizontal="20dp"
             android:hint="No Meja"
             android:inputType="numberSigned"
             android:layout_toEndOf="@id/tv_nama_pemesan"/>
@@ -52,7 +52,6 @@
             android:id="@+id/tv_nama_pemesan"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:layout_marginHorizontal="20dp"
             android:inputType="textPersonName"
             android:hint="Nama Pemesan" />
 

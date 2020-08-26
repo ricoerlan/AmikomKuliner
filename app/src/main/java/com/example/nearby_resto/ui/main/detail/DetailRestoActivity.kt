@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.nearby_resto.R
@@ -93,11 +94,9 @@ class DetailRestoActivity : AppCompatActivity() {
                     Glide.with(this@DetailRestoActivity)
                         .load(URL_FOTO)
                         .placeholder(R.drawable.ic_launcher_background)
-                        .override(550,1100)
                         .into(binding.viewImgDetail)
 
-
-                    recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+                    recyclerView.layoutManager = LinearLayoutManager(this@DetailRestoActivity,LinearLayoutManager.VERTICAL,false)
                     recyclerView.adapter = adapter
 
                 }
