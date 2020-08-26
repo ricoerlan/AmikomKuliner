@@ -58,14 +58,13 @@ class ScanCodeDetailResto : AppCompatActivity() {
 //        binding.swipeContainer.isRefreshing = true
 
         Paper.init(this)
-//        binding.txtItemCount.text = CartUtils.getShoppingCartSize().toString()
 
         loadData()
         startLocationUpdate()
 
-//        showCart.setOnClickListener {
-//            startActivity(Intent(this, ShoppingCartActivity::class.java))
-//        }
+        showCart.setOnClickListener {
+            startActivity(Intent(this, ShoppingCartActivity::class.java))
+        }
 
         binding.BTNGmaps.setOnClickListener(){
             goToGmaps()
@@ -108,6 +107,7 @@ class ScanCodeDetailResto : AppCompatActivity() {
 
                     binding.tvLokasiResto.text = lokasi_resto
                     binding.tvNamaResto.text = nama_resto
+                    binding.txtMerchantName.text = nama_resto
 
                     Glide.with(this@ScanCodeDetailResto)
                         .load(URL_FOTO)

@@ -30,8 +30,6 @@ class DataRestoAdapter (private val listResto: List<DataResto>): RecyclerView.Ad
         Glide.with(holder.itemView.context)
             .load(URL_FOTO)
             .placeholder(R.drawable.ic_launcher_background)
-            .dontAnimate()
-            .override(350,1050)
             .into(holder.view.img_view)
 
         holder.itemView.setOnClickListener {

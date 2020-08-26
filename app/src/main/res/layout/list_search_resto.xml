@@ -17,7 +17,10 @@
             <ImageView
                 android:id="@+id/img_view"
                 android:layout_width="200dp"
-                android:layout_height="130dp" />
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_header"
+                android:fitsSystemWindows="true"/>
 
             <TextView
                 android:id="@+id/et1"
@@ -26,10 +29,10 @@
                 android:text="Nama Resto"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp"
+                android:textSize="18sp"
                android:layout_toEndOf="@id/img_view"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="5dp"/>
 
             <TextView
                 android:id="@+id/et2"
@@ -39,7 +42,7 @@
                 android:textSize="15sp"
                 android:layout_below="@id/et1"
                 android:layout_toEndOf="@id/img_view"
-                android:layout_marginHorizontal="10dp"/>
+                android:layout_marginStart="5dp"/>
 
 
         </RelativeLayout>

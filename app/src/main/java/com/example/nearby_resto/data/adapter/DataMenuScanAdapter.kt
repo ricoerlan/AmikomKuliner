@@ -43,7 +43,6 @@ class DataMenuScanAdapter (private val listMenu: List<DataMenu>): RecyclerView.A
         Glide.with(holder.itemView.context)
             .load(IMAGE_URL + listMenu[position].foto_menu)
             .placeholder(R.drawable.ic_launcher_background)
-            .override(300,750)
             .into(holder.view.roundedImageView)
 
         holder.bindProduct(listMenu[position])
@@ -59,14 +58,18 @@ class DataMenuScanAdapter (private val listMenu: List<DataMenu>): RecyclerView.A
 
             Observable.create(ObservableOnSubscribe<MutableList<CartItem>> {
 
-                view.addToCart.setOnClickListener { view ->
+                view.btn_increment.setOnClickListener { view ->
                     val item = CartItem(product)
                     val activity = itemView.context as Activity
                     val itemSize = CartUtils.getShoppingCartSize().plus(1)
                     Paper.init(activity)
 
                     CartUtils.addItem(item)
-                    val orderQuantity = item.quantity
+                    val orderQuantity = item.product.quantityOrder
+                    val quantity = itemSize
+
+                    Log.d(TAG, "bindProduct: quantity ${item.quantity}")
+                    Log.d(TAG, "bindProduct: orderQuantity $orderQuantity")
 
                     if (orderQuantity == 1) {
                         Toast.makeText(
@@ -87,16 +90,18 @@ class DataMenuScanAdapter (private val listMenu: List<DataMenu>): RecyclerView.A
 
                 }
 
-                view.removeItem.setOnClickListener { view ->
+                view.btn_decrement.setOnClickListener { view ->
                     val item = CartItem(product)
                     val activity = itemView.context as Activity
                     val itemSize = CartUtils.getShoppingCartSize().minus(1)
                     Paper.init(activity)
 
-                    CartUtils.removeItem(item, view.context)
-                    val orderQuantity = item.quantity
+                    CartUtils.removeItem(item)
+                    val orderQuantity = item.product.quantityOrder
 
-                    Log.d(TAG, "bindViewHolder: orderQuantity  $orderQuantity")
+                    Log.d(TAG, "bindProduct: quantity ${item.quantity}")
+                    Log.d(TAG, "bindProduct: orderQuantity $orderQuantity")
+
                     itemView.txt_quantity.text = orderQuantity.toString()
                     if (orderQuantity == 0){
                         Toast.makeText(

@@ -15,14 +15,16 @@ object CartUtils {
             val targetItem = cart.singleOrNull { it.product.id_menu == cartItem.product.id_menu }
             if (targetItem == null) {
                 cartItem.quantity++
+                cartItem.product.quantityOrder++
                 cart.add(cartItem)
             } else {
                 targetItem.quantity++
+                cartItem.product.quantityOrder++
             }
             saveCart(cart)
         }
 
-        fun removeItem(cartItem: CartItem, context: Context) {
+        fun removeItem(cartItem: CartItem) {
             val cart =
                 getCart()
 
@@ -30,6 +32,7 @@ object CartUtils {
             if (targetItem != null) {
                 if (targetItem.quantity > 0) {
                     targetItem.quantity--
+                    cartItem.product.quantityOrder--
                 } else {
                     cart.remove(targetItem)
                 }

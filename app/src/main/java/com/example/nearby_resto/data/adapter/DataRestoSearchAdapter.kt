@@ -36,7 +36,6 @@ class DataRestoSearchAdapter (private val listResto: List<DataResto>): RecyclerV
             .load(URL_FOTO)
             .placeholder(R.drawable.ic_launcher_background)
             .dontAnimate()
-            .override(350,1050)
             .into(holder.view.img_view)
 
         holder.itemView.setOnClickListener {
